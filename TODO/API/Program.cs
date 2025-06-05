@@ -39,7 +39,15 @@ app.MapPut("/Tarefas/{id}", (int id, Tarefa input, AppDataContext db) =>
     return Results.Ok(tarefas);
 });
 
-
+app.MapDelete("/Tarefas/{id}",(int id, AppDataContext db) =>
+{
+    var tarefas = db.Tarefas.Find(id);
+    if(tarefas is null){
+        return Results.NotFound();
+    }
+    db.Tarefas.Remove(tarefas);
+    return Results.NoContent();
+});
 
 
 app.Run();
