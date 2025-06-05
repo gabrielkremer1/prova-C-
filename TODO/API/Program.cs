@@ -26,6 +26,7 @@ app.MapPost("/Tarefas", (Tarefa tarefa, AppDataContext db) =>
 {
     db.Tarefas.Add(tarefa);
     db.SaveChangesAsync();
+    if( )
 });
     
 app.MapPut("/Tarefas/{id}", (int id, Tarefa input, AppDataContext db) =>
