@@ -16,14 +16,11 @@ app.MapGet("/Tarefas", (AppDataContext db) =>
 
 });
 
-//app.MapGet("/Tarefas{id}", (int id, AppDataContext db) =>
-//{
-    //db.Tarefas.ToListAsync();
-    //return await db.Tarefas.ToListAsync();
-
-//});
-
-
+app.MapGet("/Tarefas{id}", (int id, AppDataContext db) =>
+{
+    db.Tarefas.Find(id);
+    return db.Tarefas.Find(id);
+    });
 
 
 app.Run();
