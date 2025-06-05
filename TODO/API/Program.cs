@@ -27,6 +27,19 @@ app.MapPost("/Tarefas", (Tarefa tarefa, AppDataContext db) =>
     db.Tarefas.Add(tarefa);
     db.SaveChangesAsync();
 });
+    
+app.MapPut("/Tarefas/{id}", (int id, Tarefa input, AppDataContext db) =>
+{
+    var tarefas = db.Tarefas.Find(id);
+    if(tarefas is null)
+        return Results.NotFound();
+    tarefas.Titulo = input.Titulo;
+    tarefas.Status = input.Status;
+    db.SaveChangesAsync();
+    return Results.Ok(tarefas);
+});
+
+
 
 
 app.Run();
