@@ -9,8 +9,21 @@ builder.Services.AddDbContext<AppDataContext>();
 var app = builder.Build();
 
 
+app.MapGet("/Tarefas", (AppDataContext db) =>
+{
+    db.Tarefas.ToList();
+    return db.Tarefas.ToList();
 
-app.MapGet("/", () => "Hello World!");
+});
+
+//app.MapGet("/Tarefas{id}", (int id, AppDataContext db) =>
+//{
+    //db.Tarefas.ToListAsync();
+    //return await db.Tarefas.ToListAsync();
+
+//});
+
+
 
 
 app.Run();
