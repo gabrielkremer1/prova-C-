@@ -20,7 +20,13 @@ app.MapGet("/Tarefas{id}", (int id, AppDataContext db) =>
 {
     db.Tarefas.Find(id);
     return db.Tarefas.Find(id);
-    });
+});
+
+app.MapPost("/Tarefas", (Tarefa tarefa, AppDataContext db) =>
+{
+    db.Tarefas.Add(tarefa);
+    db.SaveChangesAsync();
+});
 
 
 app.Run();
